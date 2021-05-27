@@ -7,17 +7,20 @@ public class MainApplication {
 
 
     public static void main(String[] args) {
-        if(args[0].equals("info") || args[0].isEmpty()) {
-            System.out.println("INFO:");
-            System.out.println("args[user, password, target, speed_flood, time, environment]");
-            System.out.println("user and password - authorized user");
-            System.out.println("target - chat or channel id");
-            System.out.println("speed_flood - Message to minute");
-            System.out.println("time - Time to flood in minute");
-            System.out.println("environment - prod, pres or dev");
+        if (args.length == 0) {
+            info();
+            return;
         }
 
-    // mango3294@mangosip.ru 123456aB 402353119@mtalker.mangotele.com 10 10 prod
+        if (args[0].equals("info")) {
+            info();
+            return;
+        }
+
+        // mango3294@mangosip.ru 123456aB 402353119@mtalker.mangotele.com 10 10 prod
+
+
+        // Убрать все лишнее, убрать выводы в консоль (сделать статус команду!),  сделать jar файл.
 
         long speed_flood = Integer.parseInt(args[3]); // Message to minute
         long time = Integer.parseInt(args[4]); // Time to flood in minute
@@ -34,7 +37,7 @@ public class MainApplication {
 
         try {
             console_thread.join(time * 1000);
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println("Time Out!");
             e.printStackTrace();
         }
@@ -44,8 +47,18 @@ public class MainApplication {
 
     private static String environmentCheck(String env) {
         List<String> environment = Arrays.asList("pres", "prod", "dev");
-        if(!environment.contains(env)) throw new IllegalArgumentException("");
+        if (!environment.contains(env)) throw new IllegalArgumentException("");
         return env;
+    }
+
+    private static void info() {
+        System.out.println("INFO:");
+        System.out.println("args[user, password, target, speed_flood, time, environment]");
+        System.out.println("user and password - authorized user");
+        System.out.println("target - chat or channel id");
+        System.out.println("speed_flood - Message to minute");
+        System.out.println("time - Time to flood in minute");
+        System.out.println("environment - prod, pres or dev");
     }
 
 
