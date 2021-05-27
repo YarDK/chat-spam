@@ -7,18 +7,23 @@ import java.io.InputStreamReader;
 public class ConsoleReader implements Runnable {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public void run(){
-        while(!Thread.currentThread().isInterrupted()){
+    public void run() {
+        while (!Thread.currentThread().isInterrupted()) {
             try {
                 String line = reader.readLine();
-                if(line.equals("stop")){
+                if (line.equals("stop")) {
                     reader.close();
                     ApplicationController.finish = true;
                     Thread.currentThread().interrupt();
+                } else if (line.isEmpty() && ApplicationController.finish) {
+                    reader.close();
+                    Thread.currentThread().interrupt();
+                } else if (line.equals("status")) {
+                    ConsoleCommands.status();
                 } else {
                     System.out.println("For finish enter stop command");
                 }
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

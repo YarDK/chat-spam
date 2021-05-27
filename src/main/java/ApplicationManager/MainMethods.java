@@ -1,6 +1,7 @@
 package ApplicationManager;
 
 import Models.RegisterData;
+import application.ConsoleCommands;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.jayway.restassured.RestAssured;
@@ -61,7 +62,8 @@ public class MainMethods {
 
     // Для работы с 4talk сервером
     public JsonObject post_response(String json, String url, RegisterData data) {
-        System.out.println("\nJson for " + url + ":\n" + json);
+        //System.out.println("\nJson for " + url + ":\n" + json);
+        ConsoleCommands.addLog("\nJson for " + url + ":\n" + json);
 
         String post_request = RestAssured.given()
                 .auth()
@@ -72,7 +74,8 @@ public class MainMethods {
                 .post(data.getUrl_4talk() + url).asString();
 
 
-        System.out.println("\nResponse for " + url + ":\n" + post_request);
+        //System.out.println("\nResponse for " + url + ":\n" + post_request);
+        ConsoleCommands.addLog("\nResponse for " + url + ":\n" + post_request);
         try {
             return JsonParser.parseString(post_request).getAsJsonObject();
         } catch (JsonSyntaxException e) {

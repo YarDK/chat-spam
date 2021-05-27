@@ -81,7 +81,8 @@ public class SessionsRequests extends MainApplication {
                 .parameter("model", data.getModel())
                 .parameter("os", data.getOs())
                 .post(url).asString();
-        System.out.println("\nResponse start_session:\n" + start_session);
+        //System.out.println("\nResponse start_session:\n" + start_session);
+        System.out.println("Start Session request done\n");
 
         JsonObject response_start_session = JsonParser.parseString(start_session).getAsJsonObject();
         Assert.assertEquals(

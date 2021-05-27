@@ -69,6 +69,8 @@ public class ApplicationController implements Runnable {
             amount--;
         }
         tearDown();
+        System.out.println("Press Enter for finish.");
+        finish = true;
     }
 
 }

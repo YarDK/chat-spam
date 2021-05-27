@@ -17,10 +17,10 @@ public class MainApplication {
             return;
         }
 
-        // mango3294@mangosip.ru 123456aB 402353119@mtalker.mangotele.com 10 10 prod
+        // mango3294@mangosip.ru 123456aB 402353119@mtalker.mangotele.com 10 1 prod
 
 
-        // Убрать все лишнее, убрать выводы в консоль (сделать статус команду!),  сделать jar файл.
+        // сделать jar файл
 
         long speed_flood = Integer.parseInt(args[3]); // Message to minute
         long time = Integer.parseInt(args[4]); // Time to flood in minute
@@ -34,13 +34,6 @@ public class MainApplication {
         Thread console_thread = new Thread(console);
         app_thread.start();
         console_thread.start();
-
-        try {
-            console_thread.join(time * 1000);
-        } catch (InterruptedException e) {
-            System.out.println("Time Out!");
-            e.printStackTrace();
-        }
 
 
     }
