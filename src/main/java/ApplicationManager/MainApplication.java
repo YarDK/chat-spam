@@ -13,9 +13,9 @@ public class MainApplication extends MainMethods{
     private SessionsRequests sessionsRequests;
 
 
-    public void init(String environment, String user, String password) {
+    public void init(String environment, String user, String password, String core_path) {
         System.out.printf("ENVIRONMENT - Tests running on environment: %s\n%n",environment);
-        registerData = new RegisterHelper().registerData(environment, user, password);
+        registerData = new RegisterHelper().registerData(environment, user, password, core_path);
         executeData = new ExecuteData();
         sessionsRequests = new SessionsRequests(registerData, executeData);
         sessionsRequests.authorisation();

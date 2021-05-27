@@ -26,7 +26,7 @@ public class MainApplication {
         long time = Integer.parseInt(args[4]); // Time to flood in minute
 
         ApplicationController app = new ApplicationController(
-                args[0], args[1], args[2], speed_flood, time, environmentCheck(args[5].toLowerCase())
+                args[0], args[1], args[2], speed_flood, time, environmentCheck(args[5].toLowerCase()), args[6]
         );
         ConsoleReader console = new ConsoleReader();
 
@@ -46,12 +46,13 @@ public class MainApplication {
 
     private static void info() {
         System.out.println("INFO:");
-        System.out.println("args[user, password, target, speed_flood, time, environment]");
+        System.out.println("args[user, password, target, speed_flood, time, environment, core_path]");
         System.out.println("user and password - authorized user");
         System.out.println("target - chat or channel id");
         System.out.println("speed_flood - Message to minute");
         System.out.println("time - Time to flood in minute");
         System.out.println("environment - prod, pres or dev");
+        System.out.println("core_path - path project");
     }
 
 

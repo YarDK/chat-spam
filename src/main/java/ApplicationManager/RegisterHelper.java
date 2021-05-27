@@ -2,10 +2,7 @@ package ApplicationManager;
 
 import Models.RegisterData;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class RegisterHelper{
@@ -21,19 +18,20 @@ public class RegisterHelper{
 
     }
 
-    private File fileInit(){
+    private File fileInit(String core){
         if(this.file_properties == null) {
-            this.file_properties = new File(String.format("src/main/resources/%s.properties", environment));
+            this.file_properties = new File(String.format("%s/src/main/resources/%s.properties", core, environment));
         }
         return file_properties;
     }
 
-    public RegisterData registerData(String environment, String username, String password) {
+
+    public RegisterData registerData(String environment, String username, String password, String core_path) {
 
         this.environment = environment;
 
         try {
-            properties.load(new FileReader(fileInit()));
+            properties.load(new FileReader(fileInit(core_path)));
             return new RegisterData()
                     .withUsername(username)
                     .withPassword(password)
@@ -57,25 +55,4 @@ public class RegisterHelper{
         }
     }
 
-    public  String getLocalProperty(String property){
-        try {
-            properties.load(new FileReader(fileInit()));
-            return properties.getProperty(property);
-        } catch (IOException e){
-            e.printStackTrace();
-            return "";
-        }
-
-    }
-
-    public void setLocalProperty(String property_key, String property_value, String whats_changed){
-        try {
-            properties.load(new FileReader(fileInit()));
-            properties.setProperty(property_key, property_value);
-            properties.store(new FileWriter(fileInit()),whats_changed);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
 }

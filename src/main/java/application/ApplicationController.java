@@ -15,16 +15,18 @@ public class ApplicationController implements Runnable {
     private long speed_flood; // Message to minute
     private long amount; // Amount messages will send
     private String environment;
+    private String file_property_path;
 
     public static boolean finish = false;
 
-    public ApplicationController(String user, String password, String target, long speed_flood, long time, String environment) {
+    public ApplicationController(String user, String password, String target, long speed_flood, long time, String environment, String file_property_path) {
         this.user = user;
         this.password = password;
         this.target = target;
         this.speed_flood = speed_flood;
         this.amount = speed_flood * time;
         this.environment = environment;
+        this.file_property_path = file_property_path;
     }
 
     public ApplicationController() {
@@ -32,7 +34,7 @@ public class ApplicationController implements Runnable {
 
     public void setUp(){
         if(user != null && password != null)
-            app.init(System.getProperty("environment",environment), user, password);
+            app.init(System.getProperty("environment",environment), user, password, file_property_path);
 
     }
 
